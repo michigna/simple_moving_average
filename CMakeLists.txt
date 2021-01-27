@@ -5,4 +5,10 @@ project(simple_moving_average LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(simple_moving_average main.cpp)
+set(SOURCES
+    main.cpp)
+
+set(HEADERS
+    simplemovingaverage.h)
+
+add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
