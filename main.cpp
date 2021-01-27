@@ -10,7 +10,7 @@ using namespace std;
 
 typedef  float REAL;
 
-#define DEF_RANDOM
+//#define DEF_RANDOM
 
 int main()
 {
@@ -23,11 +23,11 @@ int main()
          it_interval++)
     {
 
-    ///Размер окна усреднения
+    //Размер окна усреднения
     int interval=*it_interval;
 
 #ifdef DEF_RANDOM
-    ///Создание случайного набора данных для заполнения вектора
+    //Создание случайного набора данных для заполнения вектора
 
     random_device rnd_device;
 
@@ -38,32 +38,35 @@ int main()
     auto gen = [&dist, &mersenne_engine](){
         return dist(mersenne_engine);
     };
-    ///Вектор входных значений
+    //Вектор входных значений
     vector<REAL> v_in(numberValues);
 
-    ///Инициализация вектора случайным набором
+    //Инициализация вектора случайным набором
     generate(begin(v_in), end(v_in), gen);
 #else
     vector<REAL> v_in={1.f,2.f,3.f,4.f,5.f,6.f,7.f,8.f,9.f,10.f};
+
+    if(v_in.size()<interval)
+        continue;
 #endif
 
-    ///Выходной вектор размером n-interval+1
+    //Выходной вектор размером n-interval+1
     vector<REAL> v_out(v_in.size()-interval+1);
 
 
     auto start = chrono::steady_clock::now();
 
-    ///Алгоритм простого скользящего среднего
+    //Алгоритм простого скользящего среднего
     SimpleMovingAverage(v_in.begin(),v_in.end(),v_out.begin(),interval);
 
     auto end = chrono::steady_clock::now();
 
 
-    ///Затраченное процессорное время
+    //Затраченное процессорное время
 
     chrono::duration<double> elapsed_seconds = end-start;
 
-    ///Производительность
+    //Производительность
     double performance=numberValues/elapsed_seconds.count();
 
     cout<< std::fixed;
