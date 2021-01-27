@@ -7,10 +7,10 @@ using namespace std;
 template <typename T>
 void SimpleMovingAverage(T sourceBeginIterater,T sourceEndIterater ,T meanBeginIterater,int interval)
 {
-    // Текущий итератор исходной последовательности
+    // Итератор на текущий элемент исходной последовательности
     T sourceIterater=sourceBeginIterater;
 
-    // Текущий итератор усреднённой последовательности
+    // Итератор на текущий элемент  усреднённой последовательности
     T meanIterater=meanBeginIterater;
 
     //Переменная среднего текущего значения того же типа данных, как указывает итератор  T

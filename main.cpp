@@ -10,7 +10,7 @@ using namespace std;
 
 typedef  float REAL;
 
-//#define DEF_RANDOM
+#define DEF_RANDOM
 
 int main()
 {
